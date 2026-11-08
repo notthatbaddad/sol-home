@@ -1,0 +1,384 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>HOME</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:opsz,wght@8..60,400..700&family=Playfair+Display+SC:wght@700&display=swap">
+<style>
+/* Layout: full-bleed team photo with HOME and a tagline band across its lower edge. Under it a slim details bar, the vision (headline + intro, then three columns), a wide photo strip, a centered Give band, and a footer with links. */
+:root {
+  --bg: #e9e5df;
+  --surface: #ddd7ce;
+  --fg: #2a2625;
+  --muted: #5d5552;
+  --line: rgba(42, 38, 37, 0.2);
+  --rule: #bf8a2c;
+  --gold: #d9a23f;
+  --on-gold: #231c1a;
+  --photo-ink: #fbf7f0;
+  --title-ink: rgba(251, 247, 240, 0.78);
+  --focus: #2a2625;
+  --logo-a: #4a4646;
+  --logo-b: #8a8a8a;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-tag: "Playfair Display SC", Georgia, "Times New Roman", serif;
+  --gutter: max(clamp(16px, 4vw, 56px), env(safe-area-inset-left, 0px));
+  --gutter-r: max(clamp(16px, 4vw, 56px), env(safe-area-inset-right, 0px));
+  --photo: url("team.jpg");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1d1918;
+    --surface: #282322;
+    --fg: #ece6dc;
+    --muted: #b3a99e;
+    --line: rgba(236, 230, 220, 0.22);
+    --rule: #d9a23f;
+    --focus: #ece6dc;
+    --logo-a: #e6dfd5;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1d1918;
+  --surface: #282322;
+  --fg: #ece6dc;
+  --muted: #b3a99e;
+  --line: rgba(236, 230, 220, 0.22);
+  --rule: #d9a23f;
+  --focus: #ece6dc;
+  --logo-a: #e6dfd5;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter-r);
+}
+a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+/* Logo (one symbol, recolored by context) */
+.fa { fill: var(--logo-a); }
+.sa { stroke: var(--logo-a); }
+.sb { stroke: var(--logo-b); }
+.logo { display: block; height: clamp(52px, 7vw, 84px); aspect-ratio: 396 / 352; }
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-weight: 650;
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  padding: 0.95em 1.7em;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  transition: background-color 0.18s, color 0.18s, border-color 0.18s;
+}
+.btn--gold { background: var(--gold); color: var(--on-gold); border-color: var(--gold); }
+.btn--gold:hover { background: var(--photo-ink); border-color: var(--photo-ink); }
+.btn--ghost {
+  color: var(--photo-ink);
+  border-color: var(--photo-ink);
+  background: rgba(24, 18, 16, 0.38);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.btn--ghost:hover { background: var(--photo-ink); color: var(--on-gold); }
+
+/* Hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: #3a302b;
+}
+.hero__img {
+  position: absolute;
+  inset: 0;
+  background: var(--photo) 50% 24% / cover no-repeat;
+}
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(24, 18, 16, 0.78) 0%, rgba(24, 18, 16, 0.42) 30%, rgba(24, 18, 16, 0) 58%),
+    linear-gradient(to bottom, rgba(24, 18, 16, 0.55) 0%, rgba(24, 18, 16, 0) 26%);
+}
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: max(clamp(14px, 2.4vw, 32px), env(safe-area-inset-top, 0px));
+}
+.nav .logo {
+  --logo-a: var(--photo-ink);
+  --logo-b: rgba(251, 247, 240, 0.78);
+  height: clamp(64px, 8.4vw, 112px);
+  filter: drop-shadow(0 1px 8px rgba(20, 14, 12, 0.6));
+}
+.nav__btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.nav a:focus-visible { outline-color: var(--photo-ink); }
+.hero__lock {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(10px, 2vw, 28px);
+  display: flex;
+  justify-content: center;
+}
+.lock { position: relative; }
+.tag {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  top: 58%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-family: var(--font-tag);
+  font-weight: 700;
+  font-size: 3.3vw;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 0.3em 0.7em;
+  background: rgba(251, 247, 240, 0.66);
+  color: var(--on-gold);
+}
+@media (min-width: 760px) {
+  .tag {
+    top: 60%;
+    font-size: 1.45vw;
+    letter-spacing: 0.16em;
+    text-align: justify;
+    text-align-last: justify;
+    padding: 0.28em 0.7em;
+    background: rgba(251, 247, 240, 0.58);
+  }
+}
+.hero__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 900;
+  font-size: 17.25vw;
+  line-height: 0.74;
+  letter-spacing: -0.015em;
+  color: var(--title-ink);
+  text-align: center;
+  white-space: nowrap;
+  animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes rise {
+  from { transform: translateY(7%); }
+  to { transform: none; }
+}
+@media (min-width: 760px) {
+  .hero { aspect-ratio: auto; height: clamp(480px, 57vw, 940px); }
+}
+
+/* Details bar */
+.info { padding-top: clamp(28px, 4vw, 52px); padding-bottom: clamp(28px, 4vw, 52px); }
+.info__grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px clamp(20px, 3vw, 48px);
+}
+@media (min-width: 760px) {
+  .info__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.info__item { border-left: 3px solid var(--rule); padding-left: 16px; }
+.info__item dt {
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+.info__item dd { margin: 0; color: var(--muted); overflow-wrap: anywhere; }
+.info__item a { color: inherit; text-underline-offset: 3px; }
+.info__item a:hover { color: var(--fg); }
+
+/* Sections */
+.section { padding-top: clamp(48px, 7vw, 104px); padding-bottom: clamp(48px, 7vw, 104px); }
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+}
+@media (min-width: 860px) {
+  .cols { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: end; }
+}
+.statement {
+  margin: 0;
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 800;
+  font-size: clamp(2.3rem, 5.4vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.lead {
+  margin: 0;
+  max-width: 34em;
+  font-size: clamp(1.2rem, 1.7vw, 1.4rem);
+  line-height: 1.55;
+}
+.pillars {
+  margin: clamp(40px, 6vw, 80px) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px clamp(24px, 3vw, 48px);
+}
+@media (min-width: 760px) {
+  .pillars { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.pillar { border-top: 2px solid var(--rule); padding-top: 1rem; }
+.pillar dt {
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+.pillar dd { margin: 0; color: var(--muted); max-width: 30em; }
+
+.give { background: var(--surface); }
+.give__in { max-width: 36rem; margin: 0 auto; text-align: center; }
+.give__in .statement { margin-bottom: 20px; }
+.give__in p { margin: 0 0 28px; }
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  flex-wrap: wrap;
+  padding-top: 36px;
+  padding-bottom: max(36px, env(safe-area-inset-bottom, 0px));
+}
+.foot .logo { height: 64px; }
+.foot__nav { display: flex; gap: 8px 28px; flex-wrap: wrap; }
+.foot__nav a {
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 2px solid var(--rule);
+  padding-bottom: 2px;
+}
+.foot__nav a:hover { border-bottom-color: var(--fg); }
+.foot small {
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.foot-wrap { border-top: 1px solid var(--line); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero__title { animation: none; }
+  .btn { transition: none; }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="logo" viewBox="18 32 396 352"><defs><clipPath id="92f367c46b"><path d="M 105.90625 84.691406 L 124.953125 84.691406 L 124.953125 101.398438 L 105.90625 101.398438 Z M 105.90625 84.691406 " clip-rule="nonzero"/></clipPath><clipPath id="4b9872e00e"><path d="M 106.660156 87.414062 C 105.117188 89.953125 106.207031 92.425781 107.570312 93.738281 L 115.554688 101.398438 L 123.367188 93.765625 C 124.636719 92.355469 125.125 90.855469 124.855469 89.1875 C 124.480469 86.882812 122.578125 85.09375 120.230469 84.835938 C 118.789062 84.683594 117.398438 85.089844 116.3125 85.992188 C 116.023438 86.234375 115.761719 86.507812 115.53125 86.800781 C 115.261719 86.464844 114.945312 86.160156 114.585938 85.886719 C 113.339844 84.9375 111.75 84.558594 110.222656 84.851562 C 108.777344 85.132812 107.480469 86.066406 106.660156 87.414062 Z M 106.660156 87.414062 " clip-rule="nonzero"/></clipPath><clipPath id="8430699b51"><path d="M 0.90625 0.71875 L 19.953125 0.71875 L 19.953125 17.398438 L 0.90625 17.398438 Z M 0.90625 0.71875 " clip-rule="nonzero"/></clipPath><clipPath id="f7892d4f81"><path d="M 1.660156 3.414062 C 0.117188 5.953125 1.207031 8.425781 2.570312 9.738281 L 10.554688 17.398438 L 18.367188 9.765625 C 19.636719 8.355469 20.125 6.855469 19.855469 5.1875 C 19.480469 2.882812 17.578125 1.09375 15.230469 0.835938 C 13.789062 0.683594 12.398438 1.089844 11.3125 1.992188 C 11.023438 2.234375 10.761719 2.507812 10.53125 2.800781 C 10.261719 2.464844 9.945312 2.160156 9.585938 1.886719 C 8.339844 0.9375 6.75 0.558594 5.222656 0.851562 C 3.777344 1.132812 2.480469 2.066406 1.660156 3.414062 Z M 1.660156 3.414062 " clip-rule="nonzero"/></clipPath><clipPath id="c683476e49"><rect x="0" width="20" y="0" height="18"/></clipPath><clipPath id="6f45ef7cc9"><path d="M 85.476562 57 L 110.875 57 L 110.875 79.210938 L 85.476562 79.210938 Z M 85.476562 57 " clip-rule="nonzero"/></clipPath><clipPath id="f6c1b3cb1a"><path d="M 86.484375 60.566406 C 84.425781 63.953125 85.875 67.25 87.695312 69 L 98.339844 79.210938 L 108.757812 69.035156 C 110.453125 67.152344 111.101562 65.15625 110.738281 62.933594 C 110.242188 59.855469 107.707031 57.472656 104.578125 57.128906 C 102.65625 56.921875 100.800781 57.46875 99.355469 58.671875 C 98.964844 58.992188 98.617188 59.355469 98.3125 59.75 C 97.953125 59.300781 97.53125 58.890625 97.050781 58.527344 C 95.386719 57.261719 93.269531 56.761719 91.234375 57.152344 C 89.304688 57.523438 87.574219 58.765625 86.484375 60.566406 Z M 86.484375 60.566406 " clip-rule="nonzero"/></clipPath><clipPath id="5d7b3e604b"><path d="M 0.476562 0 L 25.875 0 L 25.875 22.210938 L 0.476562 22.210938 Z M 0.476562 0 " clip-rule="nonzero"/></clipPath><clipPath id="f9075c209d"><path d="M 1.484375 3.566406 C -0.574219 6.953125 0.875 10.25 2.695312 12 L 13.339844 22.210938 L 23.757812 12.035156 C 25.453125 10.152344 26.101562 8.15625 25.738281 5.933594 C 25.242188 2.855469 22.707031 0.472656 19.578125 0.128906 C 17.65625 -0.078125 15.800781 0.46875 14.355469 1.671875 C 13.964844 1.992188 13.617188 2.355469 13.3125 2.75 C 12.953125 2.300781 12.53125 1.890625 12.050781 1.527344 C 10.386719 0.261719 8.269531 -0.238281 6.234375 0.152344 C 4.304688 0.523438 2.574219 1.765625 1.484375 3.566406 Z M 1.484375 3.566406 " clip-rule="nonzero"/></clipPath><clipPath id="f08a23d6c5"><rect x="0" width="26" y="0" height="23"/></clipPath><clipPath id="4330292fe7"><path d="M 110.835938 36.523438 L 139.058594 36.523438 L 139.058594 61.277344 L 110.835938 61.277344 Z M 110.835938 36.523438 " clip-rule="nonzero"/></clipPath><clipPath id="af138cbee4"><path d="M 111.953125 40.554688 C 109.667969 44.320312 111.277344 47.984375 113.300781 49.929688 L 125.128906 61.277344 L 136.707031 49.96875 C 138.589844 47.875 139.308594 45.65625 138.910156 43.1875 C 138.355469 39.769531 135.539062 37.117188 132.058594 36.738281 C 129.925781 36.507812 127.863281 37.113281 126.253906 38.449219 C 125.824219 38.808594 125.4375 39.210938 125.097656 39.648438 C 124.699219 39.152344 124.230469 38.695312 123.699219 38.292969 C 121.847656 36.886719 119.492188 36.328125 117.230469 36.761719 C 115.089844 37.175781 113.164062 38.558594 111.953125 40.554688 Z M 111.953125 40.554688 " clip-rule="nonzero"/></clipPath><clipPath id="3cb8c6d9d8"><path d="M 0.835938 0.523438 L 29.058594 0.523438 L 29.058594 25.277344 L 0.835938 25.277344 Z M 0.835938 0.523438 " clip-rule="nonzero"/></clipPath><clipPath id="0df4ea651f"><path d="M 1.953125 4.554688 C -0.332031 8.320312 1.277344 11.984375 3.300781 13.929688 L 15.128906 25.277344 L 26.707031 13.96875 C 28.589844 11.875 29.308594 9.65625 28.910156 7.1875 C 28.355469 3.769531 25.539062 1.117188 22.058594 0.738281 C 19.925781 0.507812 17.863281 1.113281 16.253906 2.449219 C 15.824219 2.808594 15.4375 3.210938 15.097656 3.648438 C 14.699219 3.152344 14.230469 2.695312 13.699219 2.292969 C 11.847656 0.886719 9.492188 0.328125 7.230469 0.761719 C 5.089844 1.175781 3.164062 2.558594 1.953125 4.554688 Z M 1.953125 4.554688 " clip-rule="nonzero"/></clipPath><clipPath id="13f1022112"><rect x="0" width="30" y="0" height="26"/></clipPath><clipPath id="21b6aa04db"><path d="M 94.175781 136.949219 L 336.976562 136.949219 L 336.976562 379.75 L 94.175781 379.75 Z M 94.175781 136.949219 " clip-rule="nonzero"/></clipPath><clipPath id="2949d5982c"><path d="M 215.578125 136.949219 C 148.53125 136.949219 94.175781 191.300781 94.175781 258.347656 C 94.175781 325.394531 148.53125 379.75 215.578125 379.75 C 282.625 379.75 336.976562 325.394531 336.976562 258.347656 C 336.976562 191.300781 282.625 136.949219 215.578125 136.949219 Z M 215.578125 136.949219 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#92f367c46b)"><g clip-path="url(#4b9872e00e)"><g transform="matrix(1, 0, 0, 1, 105, 84)"><g clip-path="url(#c683476e49)"><g clip-path="url(#8430699b51)"><g clip-path="url(#f7892d4f81)"><path class="fa" d="M 0.90625 0.757812 L 19.953125 0.757812 L 19.953125 17.398438 L 0.90625 17.398438 Z M 0.90625 0.757812 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#6f45ef7cc9)"><g clip-path="url(#f6c1b3cb1a)"><g transform="matrix(1, 0, 0, 1, 85, 57)"><g clip-path="url(#f08a23d6c5)"><g clip-path="url(#5d7b3e604b)"><g clip-path="url(#f9075c209d)"><path class="fa" d="M 0.476562 0.0234375 L 25.875 0.0234375 L 25.875 22.210938 L 0.476562 22.210938 Z M 0.476562 0.0234375 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#4330292fe7)"><g clip-path="url(#af138cbee4)"><g transform="matrix(1, 0, 0, 1, 110, 36)"><g clip-path="url(#13f1022112)"><g clip-path="url(#3cb8c6d9d8)"><g clip-path="url(#0df4ea651f)"><path class="fa" d="M 0.835938 0.617188 L 29.058594 0.617188 L 29.058594 25.277344 L 0.835938 25.277344 Z M 0.835938 0.617188 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#21b6aa04db)"><g clip-path="url(#2949d5982c)"><path stroke-linecap="butt" transform="matrix(0.75, 0, 0, 0.75, 94.176701, 136.947908)" fill="none" stroke-linejoin="miter" d="M 161.868578 0.0017471 C 72.472737 0.0017471 -0.00122685 72.470503 -0.00122685 161.866343 C -0.00122685 251.262184 72.472737 323.736148 161.868578 323.736148 C 251.264418 323.736148 323.733174 251.262184 323.733174 161.866343 C 323.733174 72.470503 251.264418 0.0017471 161.868578 0.0017471 Z M 161.868578 0.0017471 " class="sa" stroke-width="36" stroke-opacity="1" stroke-miterlimit="4"/></g></g><path stroke-linecap="butt" transform="matrix(0.739029, -0.127814, 0.127814, 0.739029, 195.193058, 298.863728)" fill="none" stroke-linejoin="miter" d="M 0.000335826 9.000922 C 31.2864 8.999293 62.577597 8.998552 93.862774 9.002055 " class="sa" stroke-width="18" stroke-opacity="1" stroke-miterlimit="4"/><path stroke-linecap="butt" transform="matrix(0.618865, -0.423682, 0.423682, 0.618865, 125.914056, 333.433217)" fill="none" stroke-linejoin="miter" d="M 4.476045 22.329052 C 35.465882 4.556058 66.816022 4.558038 98.517867 22.329107 " class="sa" stroke-width="18" stroke-opacity="1" stroke-miterlimit="4"/><path stroke-linecap="butt" transform="matrix(0.549022, -0.510955, 0.510955, 0.549022, 259.387341, 291.156774)" fill="none" stroke-linejoin="miter" d="M 4.025833 8.050272 C 41.871327 26.985639 79.257993 26.988072 116.174392 8.046926 " class="sa" stroke-width="18" stroke-opacity="1" stroke-miterlimit="4"/><path stroke-linecap="butt" transform="matrix(0, 0.75, -0.75, 0, 197.193523, 192.821762)" fill="none" stroke-linejoin="miter" d="M -0.00193217 8.997615 L 176.737665 8.997615 " class="sb" stroke-width="18" stroke-opacity="1" stroke-miterlimit="4"/><path stroke-linecap="butt" transform="matrix(0.75, 0, 0, 0.75, 149.758208, 229.466173)" fill="none" stroke-linejoin="miter" d="M -0.000527618 8.998228 L 108.499481 8.998228 " class="sb" stroke-width="18" stroke-opacity="1" stroke-miterlimit="4"/><path stroke-linecap="butt" transform="matrix(0.53033, 0.53033, -0.53033, 0.53033, 215.968952, 62.363755)" fill="none" stroke-linejoin="miter" d="M -0.000637003 9.000624 L 365.032218 8.996941 " class="sb" stroke-width="18" stroke-opacity="1" stroke-miterlimit="4"/><path stroke-linecap="butt" transform="matrix(0.53033, -0.53033, 0.53033, 0.53033, 22.442429, 255.949667)" fill="none" stroke-linejoin="miter" d="M -0.000541397 8.999494 L 364.034261 8.999494 " class="sb" stroke-width="18" stroke-opacity="1" stroke-miterlimit="4"/><path stroke-linecap="butt" transform="matrix(0, -0.75, 0.75, 0, 86.846375, 192.981342)" fill="none" stroke-linejoin="miter" d="M 0.00116488 9.001709 L 109.334507 9.001709 " class="sb" stroke-width="18" stroke-opacity="1" stroke-miterlimit="4"/><path stroke-linecap="butt" transform="matrix(0.75, 0, 0, 0.75, 86.915442, 104.232861)" fill="none" stroke-linejoin="miter" d="M -0.00183928 9.00202 L 76.091917 9.00202 " class="sb" stroke-width="18" stroke-opacity="1" stroke-miterlimit="4"/><path stroke-linecap="butt" transform="matrix(0.000000001309, 0.75, -0.75, 0.000000001309, 143.982462, 110.984463)" fill="none" stroke-linejoin="miter" d="M -0.000117703 8.99745 L 55.567595 8.99745 " class="sb" stroke-width="18" stroke-opacity="1" stroke-miterlimit="4"/></symbol></svg>
+
+<header class="hero" id="top">
+  <div class="hero__img" role="img" aria-label="The HOME team standing together on a lawn in front of autumn hydrangeas"></div>
+  <div class="hero__shade"></div>
+  <nav class="nav wrap" aria-label="Main">
+    <a href="#top" aria-label="HOME, back to top"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg></a>
+    <div class="nav__btns">
+      <a class="btn btn--ghost" href="#vision">Vision</a>
+      <a class="btn btn--gold" href="#give">Give</a>
+    </div>
+  </nav>
+  <div class="hero__lock wrap">
+    <div class="lock">
+      <h1 class="hero__title">HOME</h1>
+      <p class="tag">Honoring Our Marriages with Engagement</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="info wrap" aria-label="Meeting details">
+    <dl class="info__grid">
+      <div class="info__item"><dt>When</dt><dd>Add your day and time</dd></div>
+      <div class="info__item"><dt>Where</dt><dd>Add your address</dd></div>
+      <div class="info__item">
+        <dt>Contact</dt>
+        <dd>Pavel Avdeyev<br><a href="tel:+14258777320">(425) 877-7320</a><br><a href="mailto:familyhome@springoflifechurch.com">familyhome@springoflifechurch.com</a></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="section wrap" aria-labelledby="vision">
+    <div class="cols">
+      <h2 class="statement" id="vision">A home for everyone who needs one.</h2>
+      <p class="lead">HOME exists so that no one has to walk through life alone. We want every person who comes through our door to feel known, welcomed, and part of the family.</p>
+    </div>
+    <dl class="pillars">
+      <div class="pillar">
+        <dt>Welcome</dt>
+        <dd>Everyone has a place at the table, just as they are. We make room, set another place, and listen first.</dd>
+      </div>
+      <div class="pillar">
+        <dt>Grow</dt>
+        <dd>We grow together through shared meals, honest conversation, and time with people who care how you are doing.</dd>
+      </div>
+      <div class="pillar">
+        <dt>Serve</dt>
+        <dd>A home is meant to open its doors. We look for ways to help our neighbors and our city.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="section give wrap" id="give" aria-labelledby="give-title">
+    <div class="give__in">
+      <h2 class="statement" id="give-title">Help keep our doors open.</h2>
+      <p>Your giving makes room for more people at HOME. Thank you for being part of it.</p>
+      <!-- Replace the # below with your online giving link. -->
+      <a class="btn btn--gold" href="#">Give online</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot-wrap">
+  <div class="foot wrap">
+    <svg class="logo" role="img" aria-label="HOME logo"><use href="#logo"/></svg>
+    <nav class="foot__nav" aria-label="Footer">
+      <a href="#vision">Vision</a>
+      <a href="#give">Give</a>
+      <a href="#top">Back to top</a>
+    </nav>
+    <small>&copy; 2026 HOME</small>
+  </div>
+</footer>
