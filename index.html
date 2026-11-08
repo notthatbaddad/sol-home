@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:opsz,wght@8..60,400..700&family=Playfair+Display+SC:wght@700&display=swap">
 <style>
-/* Layout: full-bleed team photo with HOME and a tagline band across its lower edge. Under it a slim details bar, the vision (headline + intro, then three columns), a wide photo strip, a centered Give band, and a footer with links. */
+/* Layout: full-bleed team photo with HOME and a tagline band across its lower edge. Under it a visitor details panel, the vision (headline + intro, then three columns), a centered Give band, and a footer with links. */
 :root {
   --bg: #e9e5df;
   --surface: #ddd7ce;
@@ -15,7 +15,7 @@
   --gold: #d9a23f;
   --on-gold: #231c1a;
   --photo-ink: #fbf7f0;
-  --title-ink: rgba(251, 247, 240, 0.78);
+  --title-ink: rgba(242, 228, 207, 0.82);
   --focus: #2a2625;
   --logo-a: #4a4646;
   --logo-b: #8a8a8a;
@@ -148,31 +148,27 @@ a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 .lock { position: relative; }
 .tag {
   position: absolute;
-  left: -5%;
-  right: -5%;
+  left: 0;
+  right: 0;
   top: 58%;
   transform: translateY(-50%);
   margin: 0;
   font-family: var(--font-tag);
   font-weight: 700;
-  font-size: 3.3vw;
+  font-size: clamp(0.85rem, 3.6vw, 1.1rem);
   line-height: 1.2;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: clamp(0.015em, 0.12vw, 0.045em);
   text-align: center;
-  padding: 0.3em 0.7em;
-  background: rgba(251, 247, 240, 0.66);
-  color: var(--on-gold);
+  padding: 0.3em 0.35em;
+  background: rgba(201, 155, 103, 0.6);
+  color: #3d281b;
 }
 @media (min-width: 760px) {
   .tag {
     top: 60%;
-    font-size: 1.45vw;
-    letter-spacing: 0.16em;
-    text-align: justify;
-    text-align-last: justify;
-    padding: 0.28em 0.7em;
-    background: rgba(251, 247, 240, 0.58);
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    letter-spacing: clamp(0.1em, 0.36vw, 0.16em);
+    background: rgba(201, 155, 103, 0.6);
   }
 }
 .hero__title {
@@ -196,38 +192,70 @@ a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
   .hero { aspect-ratio: auto; height: clamp(480px, 57vw, 940px); }
 }
 
-/* Details bar */
-.info { padding-top: clamp(28px, 4vw, 52px); padding-bottom: clamp(28px, 4vw, 52px); }
+/* Visit details */
+.info {
+  padding-top: clamp(32px, 4.5vw, 60px);
+  padding-bottom: clamp(32px, 4.5vw, 60px);
+  background: var(--surface);
+  border-block: 1px solid var(--line);
+}
 .info__grid {
-  margin: 0;
+  max-width: 1280px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 20px clamp(20px, 3vw, 48px);
+  align-items: stretch;
 }
 @media (min-width: 760px) {
   .info__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-.info__item { border-left: 3px solid var(--rule); padding-left: 16px; }
+.info__item {
+  min-width: 0;
+  padding: 18px 20px;
+  border-top: 3px solid var(--rule);
+  border-radius: 4px;
+  background: var(--bg);
+}
 .info__item dt {
   font-family: var(--font-display);
   font-stretch: 100%;
   font-weight: 700;
-  font-size: 1.05rem;
-  line-height: 1.5;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
-.info__item dd { margin: 0; color: var(--muted); overflow-wrap: anywhere; }
+.info__item dd { margin: 6px 0 0; overflow-wrap: anywhere; }
 .info__item a { color: inherit; text-underline-offset: 3px; }
 .info__item a:hover { color: var(--fg); }
 
 /* Sections */
 .section { padding-top: clamp(48px, 7vw, 104px); padding-bottom: clamp(48px, 7vw, 104px); }
-.cols {
+.eyebrow {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.vision__head {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(24px, 4vw, 64px);
 }
 @media (min-width: 860px) {
-  .cols { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: end; }
+  .vision__head { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: start; }
+}
+.vision__head .statement,
+.vision__head .lead {
+  font-size: clamp(1.45rem, 2.5vw, 2.25rem);
+  line-height: 1.25;
 }
 .statement {
   margin: 0;
@@ -264,12 +292,89 @@ a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
   line-height: 1.4;
   margin-bottom: 6px;
 }
+.pillar__method {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.88em;
+  font-weight: 600;
+}
 .pillar dd { margin: 0; color: var(--muted); max-width: 30em; }
 
-.give { background: var(--surface); }
-.give__in { max-width: 36rem; margin: 0 auto; text-align: center; }
-.give__in .statement { margin-bottom: 20px; }
-.give__in p { margin: 0 0 28px; }
+/* 2027 events */
+.events {
+  background: #302724;
+  color: var(--photo-ink);
+}
+.events__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 64px);
+  margin-bottom: clamp(32px, 5vw, 64px);
+}
+@media (min-width: 860px) {
+  .events__head { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: end; }
+}
+.events__head .lead { color: rgba(251, 247, 240, 0.78); }
+.events__groups {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+@media (min-width: 760px) {
+  .events__groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .event-group:last-child { grid-column: 1 / -1; }
+}
+@media (min-width: 1040px) {
+  .events__groups { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .event-group:last-child { grid-column: auto; }
+}
+.event-group {
+  min-width: 0;
+  padding: clamp(20px, 3vw, 32px);
+  border-top: 3px solid var(--rule);
+  border-radius: 4px;
+  background: rgba(251, 247, 240, 0.06);
+}
+.event-group h3 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  line-height: 1.3;
+}
+.event-group p { margin: 0; color: rgba(251, 247, 240, 0.82); }
+.event-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.event-list li {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 0.35fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 14px 0;
+  border-top: 1px solid rgba(251, 247, 240, 0.2);
+}
+.event__month {
+  padding-top: 2px;
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(251, 247, 240, 0.68);
+}
+.event__name { margin: 0; line-height: 1.4; }
+.get-involved { background: var(--surface); }
+.get-involved__in { max-width: 48rem; margin: 0 auto; text-align: center; }
+.get-involved__in .eyebrow { margin-bottom: 16px; }
+.get-involved__in .statement { margin-bottom: 20px; }
+.get-involved__in .lead { margin: 0 auto 28px; }
 
 .foot {
   display: flex;
@@ -317,22 +422,23 @@ a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
     <a href="#top" aria-label="HOME, back to top"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg></a>
     <div class="nav__btns">
       <a class="btn btn--ghost" href="#vision">Vision</a>
-      <a class="btn btn--gold" href="#give">Give</a>
+      <a class="btn btn--ghost" href="#events">Events</a>
+      <a class="btn btn--gold" href="mailto:familyhome@springoflifechurch.com">Get involved</a>
     </div>
   </nav>
   <div class="hero__lock wrap">
     <div class="lock">
       <h1 class="hero__title">HOME</h1>
-      <p class="tag">Connect. Strengthen. Equip.</p>
+      <p class="tag">Honoring Our Marriages with Engagement</p>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="info wrap" aria-label="Meeting details">
+  <section class="info wrap" aria-label="Ministry at a glance">
     <dl class="info__grid">
-      <div class="info__item"><dt>When</dt><dd>Add your day and time</dd></div>
-      <div class="info__item"><dt>Where</dt><dd>Add your address</dd></div>
+      <div class="info__item"><dt>Who We Serve</dt><dd>English- and Russian-speaking families</dd></div>
+      <div class="info__item"><dt>Our Focus</dt><dd>Connecting families, strengthening marriages, and equipping homes</dd></div>
       <div class="info__item">
         <dt>Contact</dt>
         <dd>Pavel Avdeyev<br><a href="tel:+14258777320">(425) 877-7320</a><br><a href="mailto:familyhome@springoflifechurch.com">familyhome@springoflifechurch.com</a></dd>
@@ -340,33 +446,69 @@ a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
     </dl>
   </section>
 
-  <section class="section wrap" aria-labelledby="vision">
-    <div class="cols">
-      <h2 class="statement" id="vision">Strong, connected, Christ-centered families.</h2>
-      <p class="lead">Our mission is to glorify God by connecting families, strengthening marriages, and equipping homes with biblical principles to follow Christ. We serve both English and Russian-speaking families.</p>
+  <section class="section wrap vision" id="vision" aria-labelledby="vision-title">
+    <div class="vision__head">
+      <div>
+        <p class="eyebrow">Our vision</p>
+        <h2 class="statement" id="vision-title">A church of strong, connected, Christ-centered families.</h2>
+      </div>
+      <div>
+        <p class="eyebrow">Our mission</p>
+        <p class="lead">We glorify God by connecting families, strengthening marriages, and equipping homes with biblical principles to follow Christ.</p>
+      </div>
     </div>
     <dl class="pillars">
       <div class="pillar">
-        <dt>Connect</dt>
-        <dd>We create opportunities for families and couples to build genuine relationships, connect with the broader church body, and develop a strong sense of belonging through fellowship.</dd>
+        <dt>Connect <span class="pillar__method">Fellowship</span></dt>
+        <dd>We create opportunities for families and couples to build <strong>genuine relationships</strong>, connect with the church, and find a sense of belonging.</dd>
       </div>
       <div class="pillar">
-        <dt>Strengthen</dt>
-        <dd>We provide couples and families with personal support, structured biblical guidance, and mentorship to strengthen marriages and navigate life together.</dd>
+        <dt>Strengthen <span class="pillar__method">Counseling &amp; Mentorship</span></dt>
+        <dd>Counseling offers structured <strong>biblical guidance</strong> and <strong>practical next steps</strong> for marriage and family life. Mentorship adds <strong>ongoing support</strong> from mature couples who walk alongside you.</dd>
       </div>
       <div class="pillar">
-        <dt>Equip</dt>
-        <dd>We help families grow spiritually through biblical teaching, Christ-centered guidance, and intentional opportunities to apply God’s Word to your home.</dd>
+        <dt>Equip <span class="pillar__method">Discipleship</span></dt>
+        <dd>We help families grow spiritually, relationally, and practically through <strong>biblical teaching</strong> and education for marriage, parenting, and family life. <strong>Practical resources</strong> help put what you learn into action at home.</dd>
       </div>
     </dl>
   </section>
 
-  <section class="section give wrap" id="give" aria-labelledby="give-title">
-    <div class="give__in">
-      <h2 class="statement" id="give-title">Help keep our doors open.</h2>
-      <p>Your giving makes room for more people at HOME. Thank you for being part of it.</p>
-      <!-- Replace the # below with your online giving link. -->
-      <a class="btn btn--gold" href="#">Give online</a>
+  <section class="section events wrap" id="events" aria-labelledby="events-title">
+    <div class="events__head">
+      <h2 class="statement" id="events-title">2027 Events</h2>
+      <p class="lead">Preliminary plans for English- and Russian-speaking families. Event timing is subject to change; months are a guide, not confirmed dates.</p>
+    </div>
+    <div class="events__groups">
+      <section class="event-group" aria-labelledby="events-english">
+        <h3 id="events-english">English-Speaking Events</h3>
+        <ul class="event-list">
+          <li><span class="event__month">April</span><p class="event__name">W2R — Weekend to Remember (California)</p></li>
+          <li><span class="event__month">May</span><p class="event__name">Ice Caves Sunday &amp; Family Outing</p></li>
+          <li><span class="event__month">November</span><p class="event__name">Thanksgiving Dinner · timing tentative</p></li>
+        </ul>
+      </section>
+      <section class="event-group" aria-labelledby="events-russian">
+        <h3 id="events-russian">Russian-Speaking Events</h3>
+        <ul class="event-list">
+          <li><span class="event__month">February</span><p class="event__name">Valentine’s Couples Event</p></li>
+          <li><span class="event__month">March</span><p class="event__name">Russian Family &amp; Marriage Conference</p></li>
+          <li><span class="event__month">June</span><p class="event__name">Russian Family Camp</p></li>
+          <li><span class="event__month">September</span><p class="event__name">Russian Conference &amp; Seminar</p></li>
+        </ul>
+      </section>
+      <section class="event-group" aria-labelledby="mentorship-title">
+        <h3 id="mentorship-title">Mentorship Program</h3>
+        <p>Meet throughout the year for personal support and relational guidance that strengthens marriages and supports families.</p>
+      </section>
+    </div>
+  </section>
+
+  <section class="section get-involved wrap" id="get-involved" aria-labelledby="involved-title">
+    <div class="get-involved__in">
+      <p class="eyebrow">There’s a place for you at HOME</p>
+      <h2 class="statement" id="involved-title">Grow together.</h2>
+      <p class="lead">Join us for family events, discipleship, and mentorship. We’d love to connect with you.</p>
+      <a class="btn btn--gold" href="mailto:familyhome@springoflifechurch.com">Get involved</a>
     </div>
   </section>
 </main>
@@ -376,7 +518,8 @@ a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
     <svg class="logo" role="img" aria-label="HOME logo"><use href="#logo"/></svg>
     <nav class="foot__nav" aria-label="Footer">
       <a href="#vision">Vision</a>
-      <a href="#give">Give</a>
+      <a href="#events">Events</a>
+      <a href="#get-involved">Get involved</a>
       <a href="#top">Back to top</a>
     </nav>
     <small>© 2026 HOME</small>
