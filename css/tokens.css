@@ -1,0 +1,108 @@
+/* Spring of Life Church design tokens (generated from the design system tokens.json). */
+@font-face { font-family: "Manrope Variable"; font-style: normal; font-display: swap; font-weight: 200 800; src: url("../fonts/manrope-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-style: italic; font-display: swap; font-weight: 400; src: url("../fonts/newsreader-latin-400-italic.woff2") format("woff2"); }
+
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f5f5f2;
+  --surface: #ffffff;
+  --surface-2: #f5f5f2;
+  --surface-soft: #f1f1ed;
+  --text: #111316;
+  --text-2: #3d424b;
+  --muted: #5f6570;
+  --border: #e3e3de;
+  --border-strong: #c8c9c3;
+  --rule: #d6d6d0;
+  --accent: #1f56d6;
+  --accent-hover: #1847b4;
+  --accent-ink: #ffffff;
+  --accent-text: #1d4fc4;
+  --accent-soft: #e9eefc;
+  --btn-strong-bg: #111316;
+  --btn-strong-ink: #ffffff;
+  --btn-strong-hover: #2b2f36;
+  --on-dark: #f4f4f2;
+  --on-dark-2: #b9bdc5;
+  --footer-bg: #111316;
+  --band-dark: #1b1e23;
+  --hero-fallback: #141a26;
+  --hero-base: #dfe6f4;
+  --focus: #1f56d6;
+  --shadow-2: 0 2px 6px rgb(20 26 38 / 0.05), 0 24px 52px -22px rgb(20 26 38 / 0.24);
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-media: 10px;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: clamp(1.125rem, 1.06rem + 0.3vw, 1.3125rem);
+  --step-2: clamp(1.3125rem, 1.15rem + 0.55vw, 1.625rem);
+  --step-3: clamp(1.875rem, 1.3rem + 2vw, 3rem);
+  --step-4: clamp(2.5rem, 1.7rem + 2.8vw, 4rem);
+  --step-5: clamp(2.9rem, 1.6rem + 5.5vw, 6.75rem);
+  --container: 1400px;
+  --gutter: clamp(20px, 4.4vw + 4px, 72px);
+  --section: clamp(64px, 4.4vw + 44px, 120px);
+  --section-tight: clamp(48px, 3vw + 32px, 88px);
+  --head-gap: clamp(24px, 2.6vw, 40px);
+  --header-h: 76px;
+  --font-sans: "Manrope Variable", Manrope, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: Newsreader, Georgia, "Times New Roman", serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1013;
+    --bg-soft: #15181d;
+    --surface: #1b1f25;
+    --surface-2: #232830;
+    --surface-soft: #1f232a;
+    --text: #f1f2f4;
+    --text-2: #c9cdd4;
+    --muted: #9aa0aa;
+    --border: #2d323a;
+    --border-strong: #464c56;
+    --rule: #363b44;
+    --accent: #2a5bd7;
+    --accent-hover: #3466df;
+    --accent-text: #8eadff;
+    --accent-soft: #1b2744;
+    --btn-strong-bg: #e9ebef;
+    --btn-strong-ink: #0e1013;
+    --btn-strong-hover: #ffffff;
+    --footer-bg: #0a0b0d;
+    --band-dark: #1b1f25;
+    --hero-base: #11151d;
+    --focus: #8eadff;
+    --shadow-2: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 26px 56px -22px rgb(0 0 0 / 0.75);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1013;
+  --bg-soft: #15181d;
+  --surface: #1b1f25;
+  --surface-2: #232830;
+  --surface-soft: #1f232a;
+  --text: #f1f2f4;
+  --text-2: #c9cdd4;
+  --muted: #9aa0aa;
+  --border: #2d323a;
+  --border-strong: #464c56;
+  --rule: #363b44;
+  --accent: #2a5bd7;
+  --accent-hover: #3466df;
+  --accent-text: #8eadff;
+  --accent-soft: #1b2744;
+  --btn-strong-bg: #e9ebef;
+  --btn-strong-ink: #0e1013;
+  --btn-strong-hover: #ffffff;
+  --footer-bg: #0a0b0d;
+  --band-dark: #1b1f25;
+  --hero-base: #11151d;
+  --focus: #8eadff;
+  --shadow-2: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 26px 56px -22px rgb(0 0 0 / 0.75);
+  color-scheme: dark;
+}
